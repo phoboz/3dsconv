@@ -160,10 +160,12 @@ read3dsfile(fname)
 	}
 	mdataend = mdata + length;
 	if ((p = getchunk(mdata, fbufend, MSCALE, &length)) == NULL) {
-		fprintf(stderr, "%s: %s has no scale.\n", progname, fname);
-		return -1;
+		fprintf(stderr, "Warning: %s has no scale.\n", fname);
+                scale = 1.0;
 	}
-	scale = getfloat(p);
+        else {
+	  scale = getfloat(p);
+        }
 	if (verbose) {
 		printf("Scale factor for 3DS file: %f\n", scale);
 	}
