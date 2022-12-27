@@ -87,6 +87,7 @@ writefaces(FILE *f, Object *obj)
 
 	for (i = 0; i < obj->numPolys; i++,p++) {
 		fprintf(f, ";* Face %d\n", i);
+		fprintf(f, "\tdc.l\t%d\t\t; flags\n", 0);
 		fd = p->fx * verttab[p->vert[0]].x + p->fy * verttab[p->vert[0]].y + p->fz * verttab[p->vert[0]].z;
 		fprintf(f, "\tdc.w\t$%x,$%x,$%x,$%x\t; face normal\n",
 			TOFIXED(p->fx), TOFIXED(p->fy), TOFIXED(p->fz),
